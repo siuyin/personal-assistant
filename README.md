@@ -20,6 +20,12 @@ When I ask Agent to perform an action
 Then I should see my action being carried out  
 But if Agent is unable to carry out my command  
 Then I should be notified  
-And Agent should recommend alternative options if available.
+And Agent should recommend alternative options where available.
+
+#### Scenario: Assistant is available in multiple places
+Given I am a busy individual  
+When I call for my Assistant in multiple locations  
+Then I should receive an acknowledgement from my Assistant.
+
 
 
