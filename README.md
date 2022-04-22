@@ -13,6 +13,12 @@ And I have a software agent monitoring my activities
 When I request for my activity log  
 Then I should see a record of my activities.
 
+#### Scenario: Learn my activities
+Given I am a busy individual  
+And I have a software agent that has recorded my activity log
+When I ask for suggestions on a given topic
+Then I should see a list of suggestions listed in relevance order based on the patterns in the data of my activity log.
+
 #### Scenario: Act on my commands
 Given I am a busy individual  
 And I have a software Agent watching / listening for my commands  
