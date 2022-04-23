@@ -23,7 +23,11 @@ having cameras and microphones to constantly monitor your activities
 It is also implemented as software agents installable on phones, tablets, computers, IP cameras and IP phones.
 An optional installation service will be offered.
 
+While Assistant is always a *personal* assistant,
+Businesses can purchase a Business Add-on that allows lock out
+of employee access to "Business" Assistant data.
 
+Wills / Power of attorney add-on (TODO)
 
 ## How we built it
 We used Go's concurrency capabilities in the Assistant custom device.
@@ -40,7 +44,15 @@ Automated Business vs Personal data classification.
 Power budgeting for portable devices.
 Power supply source and connection as Assistant is always-on.
 
+The cameras on the custom device should have unhindered upward
+as well as downward views.
+This requires the cameras to be offset from the base and thus make it less portable.
+We addressed this with a low-cost charging/power supply stand to provide the offset.
+
 ## Accomplishments that we're proud of
+We started with a well discussed set of requirements.
+
+And implemented a proof-of-concept with simple Go code.
 
 ## What we learned
 
