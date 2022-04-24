@@ -31,10 +31,10 @@ And Assistant has collected confidential data
 When I test Assistant's security  
 Then I should see Assistant's security upholds the most stringent security standards (example: multi-factor authentication, multi-stage authorisation as appropriate).
 
-### Scenario: Duresss lockout
+### Scenario: Duress lockout
 Given I am an Assistant user
-When Assitant detects I am under duress to instruct Assistant to reveal my personal data
-Then I should see Assistant invode a duress lockout procedure.
+When Assistant detects I am under duress to instruct Assistant to reveal my personal data
+Then I should see Assistant invoke a duress lockout procedure.
 
 ### Scenario: Able to categorise data as personal vs business data
 Given I use Assistant in both a personal and a business (example: employee) context  

@@ -14,8 +14,30 @@ func ShutdownInitiated() {
 func ConnectionAvailable() {
 }
 
-//go:generate stringer -type=Capability
+// ConnectionDropped is published when a established connection is dropped.
+func ConnectionDropped() {
+}
 
+// StatusUpdated is published when a significant status change is detected in a device.
+func StatusUpdated() {
+}
+
+//go:generate stringer -type=Status
+// Status indicates a device state.
+type Status int
+
+// These list the potential states a device may be in.
+const (
+	LocalStorageAvailabilityLow Status = iota
+	LocalStorageAvailabilityExhausted
+	BatteryLow
+	BatteryCharging
+	BatteryFullyCharged
+	ConnectionEstablished
+	ConnectionNotEstablished
+)
+
+//go:generate stringer -type=Capability
 // Capability indicates what the device is capable of.
 type Capability int
 
@@ -50,5 +72,10 @@ func List() []Unit {
 
 // Register enters a unit into the device database.
 func Register(u Unit) error {
+	return nil
+}
+
+// Remove removes a unit from the device database.
+func Remove(u Unit) error {
 	return nil
 }
