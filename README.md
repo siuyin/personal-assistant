@@ -99,6 +99,12 @@ Given I am an Assistant user
 When I call for my Assistant in multiple locations  
 Then I should receive an acknowledgement from my Assistant.
 
+### Scenario: Assistant learns it location
+Given I am an Assistant user
+And I have an Assistant device with me
+When I check Assistant's recognised locations
+Then I should see a list of locations, some which will have been labelled by User through interaction with Assistant.
+
 ### Scenario: Assistant is available on a custom portable device
 Given I am an Assistant user  
 When I need Assistant's services  
