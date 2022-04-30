@@ -17,12 +17,8 @@ func checkSub(t *testing.T, expected string) {
 		t.Error(err)
 	}
 
-	ms, err := sub.Fetch(1)
-	if err != nil {
-		t.Error("fetch: ", err)
-	}
-	ms[0].Ack()
-	if dat := string(ms[0].Data); dat != expected {
-		t.Errorf("expected %s, but got %s", expected, dat)
+	msg := Fetch(sub)
+	if msg != expected {
+		t.Errorf("expected %s, but got %s", expected, msg)
 	}
 }

@@ -5,6 +5,9 @@ package device
 import (
 	log "github.com/sirupsen/logrus"
 	"github.com/siuyin/dflt"
+	_ "github.com/siuyin/personal-assistant/command"
+	"github.com/siuyin/personal-assistant/internal/evt"
+	_ "github.com/siuyin/personal-assistant/learn"
 )
 
 func init() {
@@ -15,18 +18,24 @@ func init() {
 
 // PoweredOn is published when power to device is detected.
 func PoweredOn() {
-	info("aQimbo custom hardware starting up")
+	event("CustomHardwareStarted", "aQimbo custom hardware started")
 	debug("audio stream started")
 	debug("video stream started")
 
-	info("phone detected")
+	debug("phone detected")
 	info("phone bluetooth connected")
+
+	ConnectionAvailable()
 }
 func info(x ...interface{}) {
 	log.WithFields(log.Fields{"module": "device"}).Info(x...)
 }
 func debug(x ...interface{}) {
 	log.WithFields(log.Fields{"module": "device"}).Debug(x...)
+}
+func event(name string, msg ...interface{}) {
+	evt.Pub("pa.device", name)
+	info(msg...)
 }
 
 // ShutdownInitiated is published with a user or devices requests to shut down the device.

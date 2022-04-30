@@ -38,6 +38,25 @@ func Sub(subj, clientName string) *nats.Subscription {
 	return sub
 }
 
+// Fetch fetches an event from a subscription and returns the event.
+func Fetch(sub *nats.Subscription) string {
+	ms, err := sub.Fetch(1)
+	if err != nil && err.Error() == "nats: timeout" {
+		return ""
+	}
+	if err != nil {
+		warn("fetch: ", err)
+		return ""
+	}
+
+	if err := ms[0].Ack(); err != nil {
+		warn("fetch ack:", err)
+	}
+	dat := string(ms[0].Data)
+	debug("fetched: ", dat)
+	return dat
+}
+
 func init() {
 	if lvl := dflt.EnvString("LogLevel", "info"); lvl != "info" {
 		log.SetLevel(log.DebugLevel)
