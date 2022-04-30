@@ -31,6 +31,8 @@ Wills / Power of attorney add-on (TODO)
 
 Dairy / Journal plan for users interested only in recording and searching personal activity logs.
 
+For more info visit: https://aqimbo.beyondbroadcast.com
+
 ## How we built it
 We used Go's concurrency capabilities in the Assistant custom device.
 For power efficiency this device is based on ARM CPUs which Go fully supports.
