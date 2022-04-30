@@ -8,6 +8,7 @@ import (
 
 func init() {
 	event("LearningSysStarted", "learning system started")
+	event("LocationFound", "location found: Singapore")
 
 	debug("door open detected")
 	debug("person detected")

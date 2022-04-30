@@ -17,6 +17,7 @@ func checkForThreats() {
 			sub := evt.Sub("pa.>", "commandClient")
 			msg := evt.Fetch(sub)
 			if msg == "ThreatDetected" {
+				event("SaveVideoForEvidenceRequested", "save video for evidence requested")
 				event("PoliceHelpRequested", "police help requested")
 			}
 		}

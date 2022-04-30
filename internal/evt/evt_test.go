@@ -12,10 +12,7 @@ func TestPubSub(t *testing.T) {
 }
 
 func checkSub(t *testing.T, expected string) {
-	sub, err := js.PullSubscribe("pa.device.test", "myClientTest")
-	if err != nil {
-		t.Error(err)
-	}
+	sub := Sub("pa.device.test", "myClientTest")
 
 	msg := Fetch(sub)
 	if msg != expected {
