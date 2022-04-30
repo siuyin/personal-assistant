@@ -37,3 +37,8 @@ nats --server nats://acc:acc@localhost:4222 stream report
 nats --server nats://acc:acc@localhost:4222 stream ls
 nats --server nats://acc:acc@localhost:4222 stream view pa
 ```
+
+And you may list server information using the system-account (user: admin, password: admin)
+```
+nats --server nats://admin:admin@localhost:4222 server ls
+```
