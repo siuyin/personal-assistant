@@ -58,7 +58,7 @@ Then my employer can get a summary of my activities.
 ### Scenario: Responds to an attention word, phrase, action or gesture
 Given I am an Assistant user  
 And I want Assistant to pay special attention (example: to record an important fact)  
-When I speak a custom word or phase (eg. greta-bee)  or make a predefined gesture or push a designated button  
+When I speak a custom word or phase (eg. aqimbo)  or make a predefined gesture or push a designated button  
 Then I should see Assistant give additional emphasis to the subsequent events.
 
 ### Scenario: Learns my activities
