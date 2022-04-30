@@ -8,44 +8,42 @@ import (
 	"github.com/siuyin/dflt"
 )
 
-// Pub published an event.
+// Pub publishes an event.
 func Pub(subj, s string) {
 	if _, err := js.Publish(subj, []byte(s)); err != nil {
 		warn("evt: pub: ", err)
 	}
+	debug("published to ", subj, ": ", s)
+
 }
 func warn(x ...interface{}) {
 	log.WithFields(log.Fields{"module": "evt"}).Warn(x...)
 }
+func info(x ...interface{}) {
+	log.WithFields(log.Fields{"module": "evt"}).Info(x...)
+}
+func debug(x ...interface{}) {
+	log.WithFields(log.Fields{"module": "evt"}).Debug(x...)
+}
+func fatal(x ...interface{}) {
+	log.WithFields(log.Fields{"module": "evt"}).Fatal(x...)
+}
 
 // Sub subscribes to a topic / subject.
-func Sub(clientName string) *nats.Subscription {
-	if _, err := js.AddConsumer("pa", &nats.ConsumerConfig{
-		Durable:       clientName,
-		FilterSubject: "pa",
-		AckPolicy:     nats.AckExplicitPolicy,
-	}); err != nil {
-		log.Warn("evt: sub: addconsumer: ", err)
-	}
-
-	sub, err := js.PullSubscribe("pa", clientName)
+func Sub(subj, clientName string) *nats.Subscription {
+	sub, err := js.PullSubscribe(subj, clientName)
 	if err != nil {
-		log.Warn("evt: sub: pullsubscribe: ", err)
+		warn("sub: ", err)
 	}
 	return sub
 }
 
-func logST(s string) { // log skip in test mode
-	mod := dflt.EnvString("Mode", "test")
-	if mod == "test" {
-		return
-	}
-	log.Println(s)
-}
-
 func init() {
+	if lvl := dflt.EnvString("LogLevel", "info"); lvl != "info" {
+		log.SetLevel(log.DebugLevel)
+	}
 	initNATS()
-	logST("evt: event management system initialised")
+	debug("event management system initialised")
 }
 
 var (
@@ -57,12 +55,12 @@ var (
 func initNATS() {
 	nc, err = nats.Connect(dflt.EnvString("NATS_Svr", "nats://acc:acc@localhost:4223"))
 	if err != nil {
-		log.Fatal("evt: connect: ", err)
+		fatal("connect: ", err)
 	}
 
 	js, err = nc.JetStream(nats.PublishAsyncMaxPending(256))
 	if err != nil {
-		log.Fatal("evt: jetstream: ", err)
+		fatal("jetstream: ", err)
 	}
 
 	setupNATSStreams()
@@ -73,6 +71,6 @@ func setupNATSStreams() {
 		Name:     "pa", // personal assistant
 		Subjects: []string{"pa.>"},
 	}); err != nil {
-		log.Fatal("evt: setupNATSStreams: ", err)
+		fatal("setupNATSStreams: ", err)
 	}
 }
