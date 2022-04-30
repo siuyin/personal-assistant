@@ -2,8 +2,19 @@
 // This is also known as Hardware Abstraction Layer.
 package device
 
+import log "github.com/sirupsen/logrus"
+
 // PoweredOn is published when power to device is detected.
 func PoweredOn() {
+	info("aQimbo custom hardware starting up")
+	info("audio stream started")
+	info("video stream started")
+
+	info("phone detected")
+	info("phone bluetooth connected")
+}
+func info(x interface{}) {
+	log.WithFields(log.Fields{"module": "device"}).Info(x)
 }
 
 // ShutdownInitiated is published with a user or devices requests to shut down the device.

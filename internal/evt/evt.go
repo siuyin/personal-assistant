@@ -2,17 +2,20 @@
 package evt
 
 import (
-	"log"
+	log "github.com/sirupsen/logrus"
 
 	"github.com/nats-io/nats.go"
 	"github.com/siuyin/dflt"
 )
 
 // Pub published an event.
-func Pub(s string) {
-	if _, err := js.Publish("pa", []byte(s)); err != nil {
-		log.Println("evt: pub: ", err)
+func Pub(subj, s string) {
+	if _, err := js.Publish(subj, []byte(s)); err != nil {
+		warn("evt: pub: ", err)
 	}
+}
+func warn(x ...interface{}) {
+	log.WithFields(log.Fields{"module": "evt"}).Warn(x...)
 }
 
 // Sub subscribes to a topic / subject.
@@ -22,12 +25,12 @@ func Sub(clientName string) *nats.Subscription {
 		FilterSubject: "pa",
 		AckPolicy:     nats.AckExplicitPolicy,
 	}); err != nil {
-		log.Println("evt: sub: addconsumer: ", err)
+		log.Warn("evt: sub: addconsumer: ", err)
 	}
 
 	sub, err := js.PullSubscribe("pa", clientName)
 	if err != nil {
-		log.Println("evt: sub: pullsubscribe: ", err)
+		log.Warn("evt: sub: pullsubscribe: ", err)
 	}
 	return sub
 }
@@ -52,7 +55,7 @@ var (
 )
 
 func initNATS() {
-	nc, err = nats.Connect(dflt.EnvString("NATS_Svr", "localhost:4223"))
+	nc, err = nats.Connect(dflt.EnvString("NATS_Svr", "nats://acc:acc@localhost:4223"))
 	if err != nil {
 		log.Fatal("evt: connect: ", err)
 	}
@@ -68,7 +71,7 @@ func initNATS() {
 func setupNATSStreams() {
 	if _, err := js.AddStream(&nats.StreamConfig{
 		Name:     "pa", // personal assistant
-		Subjects: []string{"pa"},
+		Subjects: []string{"pa.>"},
 	}); err != nil {
 		log.Fatal("evt: setupNATSStreams: ", err)
 	}

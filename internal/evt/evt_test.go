@@ -7,10 +7,10 @@ import (
 	"github.com/nats-io/nats.go"
 )
 
-func ExampleInit() {} // this is here just to call the init function when Mode != test
+func ExampleInit() {} // this is here just to call the init function when Mode != test. To see init messages: Mode=prod go test
 
 func TestPub(t *testing.T) {
-	Pub("gerbau")
+	Pub("pa.device", "gerbau")
 }
 
 func example_1() {
@@ -43,7 +43,7 @@ func example_1() {
 	// Output:
 	// abc
 }
-func Example_2() {
+func notExample_2() {
 	js.Subscribe("pa", func(msg *nats.Msg) {
 		meta, _ := msg.Metadata()
 		fmt.Printf("Stream Sequence  : %v\n", meta.Sequence.Stream)
