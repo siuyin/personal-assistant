@@ -27,6 +27,7 @@ func PoweredOn() {
 
 	ConnectionAvailable()
 }
+
 func info(x ...interface{}) {
 	log.WithFields(log.Fields{"module": "device"}).Info(x...)
 }
