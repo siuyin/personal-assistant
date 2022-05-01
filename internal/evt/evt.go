@@ -26,7 +26,7 @@ func debug(x ...interface{}) {
 	log.WithFields(log.Fields{"module": "evt"}).Debug(x...)
 }
 func fatal(x ...interface{}) {
-	log.WithFields(log.Fields{"module": "evt"}).Fatal(x...)
+	log.WithFields(log.Fields{"module": "evt", "src": "internal/evt/evt.go"}).Fatal(x...)
 }
 
 // Sub subscribes to a topic / subject.

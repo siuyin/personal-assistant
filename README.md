@@ -1,5 +1,40 @@
 # Personal Assistant
 
+# Evaluating the demo app
+1. A demonstration of this project is available as a ready to run docker image.
+ ```
+docker run --rm siuyin/aqimbodemo
+ ```
+
+1. then `docker ps` to find the running container. In the example below it is `nervous_elgamal`.
+ ```
+$ docker ps
+CONTAINER ID   IMAGE               COMMAND                  CREATED         STATUS         PORTS                                                                                  NAMES
+2f0f5c005dc0   siuyin/aqimbodemo   "/nats-server -c /na…"   3 minutes ago   Up 3 minutes                                                                                          nervous_elgamal
+ ```
+
+1. Obtain a bash shell in the running container thus
+ ```
+docker exec -it nervous_elgamal bash
+ ```
+
+1. Then run the demo app
+ ```
+$ /app
+ ```
+ Your output should resemble:
+ ```
+INFO[0000] command centre started                        module=command
+INFO[0000] learning system started                       module=learn
+INFO[0000] location found: Singapore                     module=learn
+INFO[0000] threat detected                               module=learn
+INFO[0000] aQimbo custom hardware started                module=device
+INFO[0000] phone bluetooth connected                     module=device
+INFO[0000] save video for evidence requested             module=command
+INFO[0000] police help requested                         module=command
+ ```
+
+
 # Requirements
 
 ## Feature: Personal Assistant
@@ -140,5 +175,16 @@ Given I am an Assistant user
 When I interact with Assistant  
 Then I should be alerted by Assistant when it needs attention (example: low battery or out if internet range).
 
-## Event Storming / Context Mapping
+# Event Storming / Context Mapping
 [whiteboard link](https://miro.com/app/board/o9J_ldKJFc4=/?share_link_id=330109991457).
+
+# Building the demo app
+To build the docker image locally, do the following:
+1. Clone this repository:
+ ```
+TODO
+ ```
+1. Build the image:
+ ```
+TODO
+ ```
