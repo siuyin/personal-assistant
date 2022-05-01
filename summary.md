@@ -1,27 +1,31 @@
 ## Inspiration
-Google assistant, Alexa and Siri are limited. My use of them is mostly as a glorified kitchen timer.
+Google assistant, Alexa and Siri are limited. I use them  mostly as a glorified kitchen timer.
 
-They are limited because they are sandboxed. Isolated because of privacy concerns.
-Some of us keep journals or have lawyers act on our behalf.
-What if we have a device or a set of devices that act as our trusted assistant? 
+They are limited as they are sandboxed, isolated because of privacy concerns.
+Some of us keep journals, have personal assistants or have lawyers act on our behalf.
+What if we could have a device or a set of devices that act as our own trusted personal assistant? 
 
 ## What it does
-Imagine you have an Assistant that follows you and logs your activities as you go about your day.
+Imagine  having an Assistant that follows you, logging your activities as you go about your day.
 Learning your habits, preferences and behaviour and thus "understands" you.
-Assistant reminds you (or acts on your behalf) of important milestones,
-is a repository of your data classified into personal and business areas,
+
+Assistant reminds you, or acts on your behalf, of important milestones,  
+is a repository of your data,  
+classified into personal and business areas,  
 and keeps you safe by monitoring your environment.
 
-Has you data securely encrypted residing only on the local device (initial purchase)
-as well as in the cloud (monthly subscription).
-Accessible only by you via multi-factor authentication (Duress lockout).
+It has you data securely encrypted residing on one or more local devices  
+as well as in the cloud (available via a monthly subscription).
 
-Assistant can be delivered as custom hardware
-having cameras and microphones to constantly monitor your activities
-(You can ask it to pause recording).
+Your data is accessible only by you via multi-factor authentication with adaptive biometrics.
+It even has a duress lockout if Assistant detects that you are being coerced against your will to reveal your data.
+
+Assistant is available delivered as custom hardware
+having cameras and microphones to constantly monitor your activities.
+You don't even have to call to it to enable privacy mode -- it understands gestures.
 
 It is also implemented as software agents installable on phones, tablets, computers, IP cameras and IP phones.
-An optional installation service will be offered.
+With an optional installation service being planned.
 
 While Assistant is always a *personal* assistant,
 Businesses can purchase a Business Add-on that allows lock out
@@ -34,13 +38,21 @@ Dairy / Journal plan for users interested only in recording and searching person
 For more info visit: https://aqimbo.beyondbroadcast.com
 
 ## How we built it
-We used Go's concurrency capabilities in the Assistant custom device.
-For power efficiency this device is based on ARM CPUs which Go fully supports.
+We used Go's multi-target capabilities in our Assistant custom device.
+For power efficiency, this device will probably be based on ARM CPUs which Go fully supports.
 
-There are also software agents written in Go for x86 computers, again fully supported by Go.
+There are also software agents written in Go for x86 computers
+and the latest Apple Arm based computers
+These are also fully supported by Go.
 
-Finally users on the Cloud service plan have Go code running in the cloud
-making use of the rich capabilities available in the cloud environment.
+Our software design was greatly simplified by using Go's multitasking capabilities.
+Each component / domain was implemented as autonomous goroutines.
+These goroutines communicated with each other via a distributed messaging system (NATS/Jetstream).
+NATS, being written in Go, was very easy to deploy as it was delivered as a single static binary.
+
+Finally, users our Cloud service plans have Go code running in the cloud.
+Go's small binary footprint and efficient resource usage make it a smart
+and efficient choice for use in the cloud.
 
 ## Challenges we ran into
 Automated Business vs Personal data classification.
@@ -59,5 +71,8 @@ We started with a well discussed set of requirements.
 And implemented a proof-of-concept with simple Go code.
 
 ## What we learned
+Building reliable distributed systems is a challenging task.
+Components can and do get disconnected. Keeping data synchronized and updated can be difficult.
 
 ## What's next for Personal Assistant
+aQimbo, the brand/company behind Personal Assistant is looking for startup funding.

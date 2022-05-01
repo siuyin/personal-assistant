@@ -21,7 +21,7 @@ docker exec -it nervous_elgamal bash
 
 Then run the demo app
 ```
-$ /app
+/app
 ```
 Your output should resemble:
 ```
