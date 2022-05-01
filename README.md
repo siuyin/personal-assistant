@@ -9,8 +9,8 @@ docker run --rm siuyin/aqimbodemo
 then `docker ps` to find the running container. In the example below it is `nervous_elgamal`.
 ```
 $ docker ps
-CONTAINER ID   IMAGE               COMMAND                  CREATED         STATUS         PORTS                                                                                  NAMES
-2f0f5c005dc0   siuyin/aqimbodemo   "/nats-server -c /na…"   3 minutes ago   Up 3 minutes                                                                                          nervous_elgamal
+CONTAINER ID   IMAGE               COMMAND                  CREATED         STATUS       PORTS  NAMES
+2f0f5c005dc0   siuyin/aqimbodemo   "/nats-server -c /na…"   3 minutes ago   Up 3 minutes        nervous_elgamal
 ```
 
 Obtain a bash shell in the running container thus
