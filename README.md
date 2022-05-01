@@ -1,4 +1,5 @@
 # Personal Assistant
+`aQimbo` is a secure, learning, confidential personal assistant.
 
 # Evaluating the demo app
 A demonstration of this project is available as a ready to run docker image.
