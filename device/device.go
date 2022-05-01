@@ -8,6 +8,8 @@ import (
 	_ "github.com/siuyin/personal-assistant/command"
 	"github.com/siuyin/personal-assistant/internal/evt"
 	_ "github.com/siuyin/personal-assistant/learn"
+	_ "github.com/siuyin/personal-assistant/outp"
+	_ "github.com/siuyin/personal-assistant/stor"
 )
 
 func init() {
@@ -45,6 +47,7 @@ func ShutdownInitiated() {
 
 // ConnectionAvailable is published when a means to connect to the internet is available.
 func ConnectionAvailable() {
+	event("InternetConnected", "internet connected")
 }
 
 // ConnectionDropped is published when a established connection is dropped.
