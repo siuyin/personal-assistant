@@ -6,7 +6,7 @@ import (
 	"github.com/siuyin/personal-assistant/internal/evt"
 )
 
-func init() {
+func Init() {
 	event("LearningSysStarted", "learning system started")
 	event("LocationFound", "location found: Singapore")
 

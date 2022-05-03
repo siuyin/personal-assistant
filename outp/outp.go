@@ -5,8 +5,27 @@ import (
 	"github.com/siuyin/personal-assistant/internal/evt"
 )
 
-func init() {
+func Init() {
 	debug("output system started")
+
+	checkForCommands()
+}
+func checkForCommands() {
+	go func() {
+		for {
+			sub := evt.Sub("pa.>", "outpClient")
+			msg := evt.Fetch(sub)
+			if msg == "PoliceHelpRequested" {
+				execPoliceHelpCmd()
+			}
+		}
+	}()
+}
+
+func execPoliceHelpCmd() {
+	debug("location requested from learning module")
+	event("PoliceHelpRequestCmdFormatted", "police help request command formatted")
+	event("PoliceHelpRequestSent", "police help request sent")
 }
 
 func info(x ...interface{}) {

@@ -16,6 +16,7 @@ func init() {
 	if lvl := dflt.EnvString("LogLevel", "info"); lvl != "info" {
 		log.SetLevel(log.DebugLevel)
 	}
+
 }
 
 // PoweredOn is published when power to device is detected.

@@ -57,7 +57,8 @@ func Fetch(sub *nats.Subscription) string {
 	return dat
 }
 
-func init() {
+// Init explicitly initialises the event package.
+func Init() {
 	if lvl := dflt.EnvString("LogLevel", "info"); lvl != "info" {
 		log.SetLevel(log.DebugLevel)
 	}

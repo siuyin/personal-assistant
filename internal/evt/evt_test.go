@@ -1,8 +1,14 @@
 package evt
 
 import (
+	"os"
 	"testing"
 )
+
+func TestMain(m *testing.M) {
+	Init()
+	os.Exit(m.Run())
+}
 
 func ExampleInit() {} // this is here just to call the init function when Mode != test. To see init messages: Mode=prod go test
 
