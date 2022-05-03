@@ -3,6 +3,7 @@
 
 # Evaluating the demo app
 A demonstration of this project is available as a ready to run docker image.
+This demonstration is also viewable [here](https://youtu.be/8RJ8lxp8vLE).
 ```
 docker run --rm siuyin/aqimbodemo
 ```

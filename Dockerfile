@@ -13,4 +13,4 @@ RUN tar -C /tmp -xf /tmp/nats-server-v2.8.1-linux-amd64.tar.gz
 RUN mv /tmp/nats-server-v2.8.1-linux-amd64/nats-server /nats-server
 COPY --from=build /go/src/app/internal/evt/testdata/*.conf /go/bin/app /
 RUN ls -l /
-CMD ["/nats-server", "-c", "/nats-leaf.conf"]
+CMD ["/nats-server", "-c", "/nats-main.conf"]
