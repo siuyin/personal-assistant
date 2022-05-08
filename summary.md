@@ -55,6 +55,8 @@ Finally, our tiered Cloud service offerings run `Go` code to provide services.
 Go's small binary footprint and efficient resource usage make it a smart
 and efficient choice for cloud deployment.
 
+We wish to acknowledge the contributions of Clare Zhuo for the artist impressions and rendering of the aQimbo portable custom hardware.
+
 ## Challenges we ran into
 We thought hard about how to automate Business vs Personal data separation.
 Our approach would probably use human-assisted, unsupervised learning classification.
