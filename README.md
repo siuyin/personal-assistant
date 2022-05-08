@@ -36,6 +36,8 @@ INFO[0000] save video for evidence requested             module=command
 INFO[0000] police help requested                         module=command
 ```
 
+# Video Summary
+Please see: https://youtu.be/bEEu0_FOG1I
 
 # Requirements
 
